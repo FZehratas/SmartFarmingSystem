@@ -180,6 +180,7 @@
             btnCrops.TabIndex = 4;
             btnCrops.Text = "Manage Crops";
             btnCrops.UseVisualStyleBackColor = true;
+            btnCrops.Click += btnCrops_Click;
             // 
             // dataGridViewtbl1
             // 

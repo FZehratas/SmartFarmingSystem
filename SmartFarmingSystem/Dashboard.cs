@@ -67,5 +67,12 @@ namespace SmartFarmingSystem
         {
 
         }
+
+        private void btnCrops_Click(object sender, EventArgs e)
+        {
+            CropsForm form = new CropsForm();
+            form.Show();
+            this.Hide();
+        }
     }
 }
