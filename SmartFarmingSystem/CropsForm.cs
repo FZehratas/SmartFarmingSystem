@@ -11,7 +11,7 @@ namespace SmartFarmingSystem
 {
     public partial class CropsForm : Form
     {
-        string connString = "Host=aws-0-eu-central-1.pooler.supabase.com;Port=6543;Database=postgres;Username=postgres.ejkekkoynvhewhmxolqy;Password=Sıfre;SSL Mode=Require;Trust Server Certificate=true";
+        string connString = "Host=aws-0-eu-central-1.pooler.supabase.com;Port=6543;Database=postgres;Username=postgres.ejkekkoynvhewhmxolqy;Password=smartfarmingsystem4;SSL Mode=Require;Trust Server Certificate=true";
         void TestConnection()
         {
             try
@@ -31,44 +31,29 @@ namespace SmartFarmingSystem
         {
             InitializeComponent();
             this.Load += CropsForm_Load;
-            TestConnection();
         }
         void LoadCrops()
         {
-            using (var conn = new NpgsqlConnection(connString))
-            {
-                conn.Open();
+            DataTable dt = new DataTable();
 
-                string query = @"SELECT crop_id, crop_name, planting_date, status 
-                         FROM ""Crops""";
+            dt.Columns.Add("ID");
+            dt.Columns.Add("Crop Name");
+            dt.Columns.Add("Field");
+            dt.Columns.Add("Date");
+            dt.Columns.Add("Status");
 
-                using (var da = new NpgsqlDataAdapter(query, conn))
-                {
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    dataGridView1.DataSource = dt;
-                }
-            }
+            dt.Rows.Add(1, "Strawberry Albion", "Greenhouse A", "2026-03-01", "Growing");
+            dt.Rows.Add(2, "Strawberry Festival", "Greenhouse B", "2026-02-15", "Ready");
+
+            dataGridView1.DataSource = dt;
         }
         void LoadFields()
         {
-            using (var conn = new NpgsqlConnection(connString))
-            {
-                conn.Open();
+            cmbField.Items.Clear();
 
-                string query = @"SELECT field_id, field_name FROM ""Fields""";
-
-                using (var cmd = new NpgsqlCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-
-                    cmbField.DisplayMember = "field_name";
-                    cmbField.ValueMember = "field_id";
-                    cmbField.DataSource = dt;
-                }
-            }
+            cmbField.Items.Add("Greenhouse A");
+            cmbField.Items.Add("Greenhouse B");
+            cmbField.Items.Add("Vertical Tower 1");
         }
         private void label6_Click(object sender, EventArgs e)
         {
@@ -77,26 +62,15 @@ namespace SmartFarmingSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            using (var conn = new NpgsqlConnection(connString))
-            {
-                conn.Open();
+            DataTable dt = (DataTable)dataGridView1.DataSource;
 
-                string query = @"INSERT INTO ""Crops"" 
-                        (field_id, crop_name, planting_date, status)
-                        VALUES (@field, @name, @date, 'Planted')";
-
-                using (var cmd = new NpgsqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@field", cmbField.SelectedValue);
-                    cmd.Parameters.AddWithValue("@name", txtCropName.Text);
-                    cmd.Parameters.AddWithValue("@date", dtPlantingDate.Value);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            MessageBox.Show("Crop eklendi!");
-            LoadCrops();
+            dt.Rows.Add(
+                dt.Rows.Count + 1,
+                txtCropName1.Text,
+                cmbField.Text,
+                dtPlantingDate.Value.ToShortDateString(),
+                "New"
+            );
         }
 
         private void CropsForm_Load(object sender, EventArgs e)
@@ -123,49 +97,32 @@ namespace SmartFarmingSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["crop_id"].Value);
-
-            using (var conn = new NpgsqlConnection(connString))
+            if (dataGridView1.CurrentRow != null)
             {
-                conn.Open();
-
-                string query = @"UPDATE ""Crops"" 
-                         SET crop_name=@name, planting_date=@date
-                         WHERE crop_id=@id";
-
-                using (var cmd = new NpgsqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@name", txtCropName.Text);
-                    cmd.Parameters.AddWithValue("@date", dtPlantingDate.Value);
-                    cmd.Parameters.AddWithValue("@id", id);
-
-                    cmd.ExecuteNonQuery();
-                }
+                dataGridView1.CurrentRow.Cells[1].Value = txtCropName1.Text;
+                dataGridView1.CurrentRow.Cells[2].Value = cmbField.Text;
+                dataGridView1.CurrentRow.Cells[3].Value = dtPlantingDate.Value.ToShortDateString();
             }
-
-            MessageBox.Show("Güncellendi!");
-            LoadCrops();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["crop_id"].Value);
-
-            using (var conn = new NpgsqlConnection(connString))
+            if (dataGridView1.CurrentRow != null)
             {
-                conn.Open();
-
-                string query = @"DELETE FROM ""Crops"" WHERE crop_id=@id";
-
-                using (var cmd = new NpgsqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
+                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
             }
+        }
 
-            MessageBox.Show("Silindi!");
-            LoadCrops();
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Dashboard d = new Dashboard();
+            d.Show();
+            this.Close();
         }
     }
 }

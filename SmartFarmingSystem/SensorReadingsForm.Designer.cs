@@ -1,6 +1,6 @@
 ﻿namespace SmartFarmingSystem
 {
-    partial class CropsForm
+    partial class SensorReadingsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CropsForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SensorReadingsForm));
             panelTop = new Panel();
             logo1 = new PictureBox();
             label2 = new Label();
@@ -36,18 +36,20 @@
             panel3 = new Panel();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
-            dtPlantingDate = new DateTimePicker();
+            btnBack = new Button();
+            txtMoisture = new TextBox();
+            label4 = new Label();
+            dtReadingDate = new DateTimePicker();
             cmbField = new ComboBox();
-            txtCropName1 = new TextBox();
+            txtTemperature = new TextBox();
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
-            txtCropName = new Label();
+            lblTemperature = new Label();
             btnDelete = new Button();
             btnUpdate = new Button();
             btnAdd = new Button();
             label3 = new Label();
-            btnBack = new Button();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo1).BeginInit();
             panel3.SuspendLayout();
@@ -63,7 +65,7 @@
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(801, 39);
-            panelTop.TabIndex = 7;
+            panelTop.TabIndex = 8;
             // 
             // logo1
             // 
@@ -102,10 +104,10 @@
             // 
             panel3.Controls.Add(dataGridView1);
             panel3.Controls.Add(panel2);
-            panel3.Location = new Point(28, 51);
+            panel3.Location = new Point(24, 56);
             panel3.Name = "panel3";
             panel3.Size = new Size(744, 349);
-            panel3.TabIndex = 8;
+            panel3.TabIndex = 9;
             // 
             // dataGridView1
             // 
@@ -115,19 +117,20 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(350, 161);
             dataGridView1.TabIndex = 4;
-            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // panel2
             // 
             panel2.Controls.Add(btnBack);
-            panel2.Controls.Add(dtPlantingDate);
+            panel2.Controls.Add(txtMoisture);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(dtReadingDate);
             panel2.Controls.Add(cmbField);
-            panel2.Controls.Add(txtCropName1);
+            panel2.Controls.Add(txtTemperature);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(label6);
             panel2.Controls.Add(label5);
-            panel2.Controls.Add(txtCropName);
+            panel2.Controls.Add(lblTemperature);
             panel2.Controls.Add(btnDelete);
             panel2.Controls.Add(btnUpdate);
             panel2.Controls.Add(btnAdd);
@@ -137,28 +140,57 @@
             panel2.Size = new Size(324, 393);
             panel2.TabIndex = 3;
             // 
-            // dtPlantingDate
+            // btnBack
             // 
-            dtPlantingDate.Location = new Point(108, 165);
-            dtPlantingDate.Name = "dtPlantingDate";
-            dtPlantingDate.Size = new Size(186, 23);
-            dtPlantingDate.TabIndex = 16;
+            btnBack.ForeColor = Color.DarkOliveGreen;
+            btnBack.Location = new Point(-3, 323);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(90, 23);
+            btnBack.TabIndex = 19;
+            btnBack.Text = "BACK";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
+            // txtMoisture
+            // 
+            txtMoisture.Location = new Point(108, 122);
+            txtMoisture.Name = "txtMoisture";
+            txtMoisture.Size = new Size(186, 23);
+            txtMoisture.TabIndex = 18;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label4.ForeColor = Color.DarkOliveGreen;
+            label4.Location = new Point(12, 121);
+            label4.Name = "label4";
+            label4.Size = new Size(74, 20);
+            label4.TabIndex = 17;
+            label4.Text = "Moisture:";
+            label4.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // dtReadingDate
+            // 
+            dtReadingDate.Location = new Point(108, 198);
+            dtReadingDate.Name = "dtReadingDate";
+            dtReadingDate.Size = new Size(186, 23);
+            dtReadingDate.TabIndex = 16;
             // 
             // cmbField
             // 
             cmbField.FormattingEnabled = true;
-            cmbField.Location = new Point(108, 126);
+            cmbField.Location = new Point(108, 161);
             cmbField.Name = "cmbField";
             cmbField.Size = new Size(186, 23);
             cmbField.TabIndex = 15;
-            cmbField.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // txtCropName1
+            // txtTemperature
             // 
-            txtCropName1.Location = new Point(108, 84);
-            txtCropName1.Name = "txtCropName1";
-            txtCropName1.Size = new Size(186, 23);
-            txtCropName1.TabIndex = 14;
+            txtTemperature.Location = new Point(108, 84);
+            txtTemperature.Name = "txtTemperature";
+            txtTemperature.Size = new Size(186, 23);
+            txtTemperature.TabIndex = 14;
             // 
             // label7
             // 
@@ -167,52 +199,52 @@
             label7.ForeColor = Color.DarkOliveGreen;
             label7.Location = new Point(45, 16);
             label7.Name = "label7";
-            label7.Size = new Size(211, 20);
+            label7.Size = new Size(221, 20);
             label7.TabIndex = 13;
-            label7.Text = "🌱 CROPS MANAGEMENT     ";
+            label7.Text = "🌱 SENSOR MANAGEMENT     ";
             label7.TextAlign = ContentAlignment.TopCenter;
+            label7.Click += label7_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label6.ForeColor = Color.DarkOliveGreen;
-            label6.Location = new Point(12, 165);
+            label6.Location = new Point(25, 198);
             label6.Name = "label6";
             label6.Size = new Size(53, 20);
             label6.TabIndex = 12;
             label6.Text = " Date: ";
             label6.TextAlign = ContentAlignment.TopCenter;
-            label6.Click += label6_Click;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label5.ForeColor = Color.DarkOliveGreen;
-            label5.Location = new Point(12, 125);
+            label5.Location = new Point(25, 164);
             label5.Name = "label5";
             label5.Size = new Size(46, 20);
             label5.TabIndex = 11;
             label5.Text = "Field:";
             label5.TextAlign = ContentAlignment.TopCenter;
             // 
-            // txtCropName
+            // lblTemperature
             // 
-            txtCropName.AutoSize = true;
-            txtCropName.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            txtCropName.ForeColor = Color.DarkOliveGreen;
-            txtCropName.Location = new Point(7, 84);
-            txtCropName.Name = "txtCropName";
-            txtCropName.Size = new Size(95, 20);
-            txtCropName.TabIndex = 10;
-            txtCropName.Text = " Crop Name:";
-            txtCropName.TextAlign = ContentAlignment.TopCenter;
+            lblTemperature.AutoSize = true;
+            lblTemperature.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblTemperature.ForeColor = Color.DarkOliveGreen;
+            lblTemperature.Location = new Point(7, 84);
+            lblTemperature.Name = "lblTemperature";
+            lblTemperature.Size = new Size(99, 20);
+            lblTemperature.TabIndex = 10;
+            lblTemperature.Text = "Temperature:";
+            lblTemperature.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnDelete
             // 
             btnDelete.ForeColor = Color.DarkOliveGreen;
-            btnDelete.Location = new Point(204, 212);
+            btnDelete.Location = new Point(204, 242);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(90, 23);
             btnDelete.TabIndex = 9;
@@ -223,7 +255,7 @@
             // btnUpdate
             // 
             btnUpdate.ForeColor = Color.DarkOliveGreen;
-            btnUpdate.Location = new Point(108, 212);
+            btnUpdate.Location = new Point(108, 242);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(90, 23);
             btnUpdate.TabIndex = 8;
@@ -234,7 +266,7 @@
             // btnAdd
             // 
             btnAdd.ForeColor = Color.DarkOliveGreen;
-            btnAdd.Location = new Point(12, 212);
+            btnAdd.Location = new Point(7, 242);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(90, 23);
             btnAdd.TabIndex = 7;
@@ -252,18 +284,7 @@
             label3.Size = new Size(0, 25);
             label3.TabIndex = 2;
             // 
-            // btnBack
-            // 
-            btnBack.ForeColor = Color.DarkOliveGreen;
-            btnBack.Location = new Point(12, 320);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(90, 23);
-            btnBack.TabIndex = 17;
-            btnBack.Text = "BACK";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
-            // 
-            // CropsForm
+            // SensorReadingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -272,9 +293,8 @@
             ClientSize = new Size(800, 450);
             Controls.Add(panel3);
             Controls.Add(panelTop);
-            Name = "CropsForm";
-            Text = "CropsForm";
-            Load += CropsForm_Load;
+            Name = "SensorReadingsForm";
+            Text = "SensorReadingsForm";
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logo1).EndInit();
@@ -292,19 +312,21 @@
         private Label label2;
         internal Label label1;
         private Panel panel3;
+        private DataGridView dataGridView1;
         private Panel panel2;
+        private DateTimePicker dtReadingDate;
+        private ComboBox cmbField;
+        private TextBox txtTemperature;
+        internal Label label7;
         internal Label label6;
         internal Label label5;
-        internal Label txtCropName;
+        internal Label lblTemperature;
         private Button btnDelete;
         private Button btnUpdate;
         private Button btnAdd;
         private Label label3;
-        private DateTimePicker dtPlantingDate;
-        private ComboBox cmbField;
-        private TextBox txtCropName1;
-        internal Label label7;
-        private DataGridView dataGridView1;
+        private TextBox txtMoisture;
+        internal Label label4;
         private Button btnBack;
     }
 }

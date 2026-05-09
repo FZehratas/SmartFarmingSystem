@@ -43,6 +43,10 @@
             btnCrops = new Button();
             dataGridViewtbl1 = new DataGridView();
             panel3 = new Panel();
+            label5 = new Label();
+            label4 = new Label();
+            lblFarms = new Label();
+            lblCrops = new Label();
             panel1.SuspendLayout();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo1).BeginInit();
@@ -159,6 +163,7 @@
             btnSensors.TabIndex = 6;
             btnSensors.Text = "Manage Sensors";
             btnSensors.UseVisualStyleBackColor = true;
+            btnSensors.Click += btnSensors_Click;
             // 
             // btnFields
             // 
@@ -186,7 +191,7 @@
             // 
             dataGridViewtbl1.BackgroundColor = SystemColors.ButtonFace;
             dataGridViewtbl1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewtbl1.Location = new Point(315, 71);
+            dataGridViewtbl1.Location = new Point(296, 116);
             dataGridViewtbl1.Name = "dataGridViewtbl1";
             dataGridViewtbl1.Size = new Size(417, 148);
             dataGridViewtbl1.TabIndex = 4;
@@ -194,12 +199,60 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(label4);
+            panel3.Controls.Add(lblFarms);
+            panel3.Controls.Add(lblCrops);
             panel3.Controls.Add(dataGridViewtbl1);
             panel3.Controls.Add(panel2);
             panel3.Location = new Point(30, 69);
             panel3.Name = "panel3";
             panel3.Size = new Size(744, 349);
             panel3.TabIndex = 5;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label5.ForeColor = Color.DarkOliveGreen;
+            label5.Location = new Point(296, 43);
+            label5.Name = "label5";
+            label5.Size = new Size(69, 25);
+            label5.TabIndex = 9;
+            label5.Text = "Crops:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label4.ForeColor = Color.DarkOliveGreen;
+            label4.Location = new Point(511, 43);
+            label4.Name = "label4";
+            label4.Size = new Size(69, 25);
+            label4.TabIndex = 8;
+            label4.Text = "Farms:";
+            // 
+            // lblFarms
+            // 
+            lblFarms.AutoSize = true;
+            lblFarms.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblFarms.ForeColor = Color.DarkOliveGreen;
+            lblFarms.Location = new Point(596, 43);
+            lblFarms.Name = "lblFarms";
+            lblFarms.Size = new Size(23, 25);
+            lblFarms.TabIndex = 7;
+            lblFarms.Text = "0";
+            // 
+            // lblCrops
+            // 
+            lblCrops.AutoSize = true;
+            lblCrops.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            lblCrops.ForeColor = Color.DarkOliveGreen;
+            lblCrops.Location = new Point(371, 43);
+            lblCrops.Name = "lblCrops";
+            lblCrops.Size = new Size(23, 25);
+            lblCrops.TabIndex = 6;
+            lblCrops.Text = "0";
             // 
             // Dashboard
             // 
@@ -222,6 +275,7 @@
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewtbl1).EndInit();
             panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -241,5 +295,9 @@
         private DataGridView dataGridViewtbl1;
         private Button buttonlogout;
         private Panel panel3;
+        private Label lblFarms;
+        private Label lblCrops;
+        private Label label5;
+        private Label label4;
     }
 }
