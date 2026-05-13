@@ -12,15 +12,46 @@ namespace SmartFarmingSystem
     using System.Data;
     public partial class Dashboard : Form
     {
-        string connString = "Host=db.ejkekkoynvhewhmxolqy.supabase.co;Port=5432;Database=postgres;Username=postgres;Password=smartfarmingsystem4;SSL Mode=Require;Trust Server Certificate=true";
-        void LoadSensors()
+        string connString = "Host=ep-bold-surf-apre6yz3.c-7.us-east-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=npg_nqxUsDFfP10g;SSL Mode=Require;Trust Server Certificate=true;";
+       
+        
+        
+        public Dashboard()
+        {
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new Size(1000, 600);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+        }
+
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+            LoadDashboardData();
+        }
+        void LoadDashboardData()
         {
             using (var conn = new NpgsqlConnection(connString))
             {
                 conn.Open();
 
-                string query = @"SELECT field_id, temperature, moisture, reading_date 
-                         FROM ""SensorReadings""";
+                // toplam crops
+                using (var cmd = new NpgsqlCommand("SELECT COUNT(*) FROM Crops", conn))
+                {
+                    lblCrops.Text = cmd.ExecuteScalar().ToString();
+                }
+
+                // toplam farms
+                using (var cmd = new NpgsqlCommand("SELECT COUNT(*) FROM Farms", conn))
+                {
+                    lblFarms.Text = cmd.ExecuteScalar().ToString();
+                }
+
+                // sensör tablosu
+                string query = @"SELECT f.field_name, s.temperature, s.moisture, s.reading_date
+                         FROM SensorReadings s
+                         JOIN Fields f ON s.field_id = f.field_id";
 
                 using (var da = new NpgsqlDataAdapter(query, conn))
                 {
@@ -29,48 +60,6 @@ namespace SmartFarmingSystem
                     dataGridViewtbl1.DataSource = dt;
                 }
             }
-        }
-        void LoadCounts()
-        {
-            using (var conn = new NpgsqlConnection(connString))
-            {
-                conn.Open();
-
-                var cmd1 = new NpgsqlCommand(@"SELECT COUNT(*) FROM ""Crops""", conn);
-                var cmd2 = new NpgsqlCommand(@"SELECT COUNT(*) FROM ""Farms""", conn);
-
-                int cropCount = Convert.ToInt32(cmd1.ExecuteScalar());
-                int farmCount = Convert.ToInt32(cmd2.ExecuteScalar());
-
-                lblCrops.Text = cropCount.ToString();
-                lblFarms.Text = farmCount.ToString();
-            }
-        }
-        public Dashboard()
-        {
-            InitializeComponent();
-            this.Load += Dashboard_Load;
-        }
-
-        private void Dashboard_Load(object sender, EventArgs e)
-        {
-            // LoadSensors();
-            // LoadCounts();
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add("Field ID");
-            dt.Columns.Add("Temperature");
-            dt.Columns.Add("Moisture");
-            dt.Columns.Add("Date");
-
-            dt.Rows.Add("1", "22°C", "70%", "06 May");
-            dt.Rows.Add("2", "24°C", "65%", "06 May");
-            dt.Rows.Add("3", "21°C", "75%", "06 May");
-
-            dataGridViewtbl1.DataSource = dt;
-
-            lblCrops.Text = "3";
-            lblFarms.Text = "2";
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -85,12 +74,16 @@ namespace SmartFarmingSystem
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            FarmsForm f = new FarmsForm(); // şimdilik bunu aç
+            f.Show();
+            this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            FieldsForm f = new FieldsForm();
+            f.Show();
+            this.Hide();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

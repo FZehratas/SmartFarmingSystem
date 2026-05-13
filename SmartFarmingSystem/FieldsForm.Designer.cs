@@ -1,6 +1,6 @@
 ﻿namespace SmartFarmingSystem
 {
-    partial class CropsForm
+    partial class FieldsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CropsForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FieldsForm));
             panelTop = new Panel();
             logo1 = new PictureBox();
             label2 = new Label();
@@ -36,14 +36,16 @@
             panel3 = new Panel();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
+            txtArea = new TextBox();
+            label4 = new Label();
+            cmbFarm = new ComboBox();
+            txtSoil = new TextBox();
+            txtFieldName = new TextBox();
             btnBack = new Button();
-            dtPlantingDate = new DateTimePicker();
-            cmbField = new ComboBox();
-            txtCropName1 = new TextBox();
             label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            txtCropName = new Label();
+            Size = new Label();
+            fldnm = new Label();
+            FarmName = new Label();
             btnDelete = new Button();
             btnUpdate = new Button();
             btnAdd = new Button();
@@ -63,7 +65,7 @@
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(801, 39);
-            panelTop.TabIndex = 7;
+            panelTop.TabIndex = 9;
             // 
             // logo1
             // 
@@ -91,7 +93,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label1.ForeColor = Color.DarkOliveGreen;
-            label1.Location = new Point(76, 9);
+            label1.Location = new Point(63, 9);
             label1.Name = "label1";
             label1.Size = new Size(213, 20);
             label1.TabIndex = 0;
@@ -105,7 +107,7 @@
             panel3.Location = new Point(28, 51);
             panel3.Name = "panel3";
             panel3.Size = new Size(744, 349);
-            panel3.TabIndex = 8;
+            panel3.TabIndex = 10;
             // 
             // dataGridView1
             // 
@@ -115,19 +117,19 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(350, 161);
             dataGridView1.TabIndex = 4;
-            dataGridView1.CellClick += dataGridView1_CellClick;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // panel2
             // 
+            panel2.Controls.Add(txtArea);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(cmbFarm);
+            panel2.Controls.Add(txtSoil);
+            panel2.Controls.Add(txtFieldName);
             panel2.Controls.Add(btnBack);
-            panel2.Controls.Add(dtPlantingDate);
-            panel2.Controls.Add(cmbField);
-            panel2.Controls.Add(txtCropName1);
             panel2.Controls.Add(label7);
-            panel2.Controls.Add(label6);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(txtCropName);
+            panel2.Controls.Add(Size);
+            panel2.Controls.Add(fldnm);
+            panel2.Controls.Add(FarmName);
             panel2.Controls.Add(btnDelete);
             panel2.Controls.Add(btnUpdate);
             panel2.Controls.Add(btnAdd);
@@ -136,6 +138,47 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(324, 393);
             panel2.TabIndex = 3;
+            // 
+            // txtArea
+            // 
+            txtArea.Location = new Point(108, 205);
+            txtArea.Name = "txtArea";
+            txtArea.Size = new Size(186, 23);
+            txtArea.TabIndex = 22;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label4.ForeColor = Color.DarkOliveGreen;
+            label4.Location = new Point(12, 205);
+            label4.Name = "label4";
+            label4.Size = new Size(49, 20);
+            label4.TabIndex = 21;
+            label4.Text = "Area: ";
+            label4.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // cmbFarm
+            // 
+            cmbFarm.FormattingEnabled = true;
+            cmbFarm.Location = new Point(108, 85);
+            cmbFarm.Name = "cmbFarm";
+            cmbFarm.Size = new Size(186, 23);
+            cmbFarm.TabIndex = 20;
+            // 
+            // txtSoil
+            // 
+            txtSoil.Location = new Point(108, 166);
+            txtSoil.Name = "txtSoil";
+            txtSoil.Size = new Size(186, 23);
+            txtSoil.TabIndex = 19;
+            // 
+            // txtFieldName
+            // 
+            txtFieldName.Location = new Point(108, 126);
+            txtFieldName.Name = "txtFieldName";
+            txtFieldName.Size = new Size(186, 23);
+            txtFieldName.TabIndex = 18;
             // 
             // btnBack
             // 
@@ -146,31 +189,7 @@
             btnBack.TabIndex = 17;
             btnBack.Text = "BACK";
             btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
-            // 
-            // dtPlantingDate
-            // 
-            dtPlantingDate.Location = new Point(108, 165);
-            dtPlantingDate.Name = "dtPlantingDate";
-            dtPlantingDate.Size = new Size(186, 23);
-            dtPlantingDate.TabIndex = 16;
-            // 
-            // cmbField
-            // 
-            cmbField.FormattingEnabled = true;
-            cmbField.Location = new Point(108, 126);
-            cmbField.Name = "cmbField";
-            cmbField.Size = new Size(186, 23);
-            cmbField.TabIndex = 15;
-            cmbField.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
-            // 
-            // txtCropName1
-            // 
-            txtCropName1.Location = new Point(108, 84);
-            txtCropName1.Name = "txtCropName1";
-            txtCropName1.Size = new Size(186, 23);
-            txtCropName1.TabIndex = 14;
-            txtCropName1.TextChanged += txtCropName1_TextChanged;
+     
             // 
             // label7
             // 
@@ -181,78 +200,74 @@
             label7.Name = "label7";
             label7.Size = new Size(211, 20);
             label7.TabIndex = 13;
-            label7.Text = "🌱 CROPS MANAGEMENT     ";
+            label7.Text = "🌱 FIELDS MANAGEMENT     ";
             label7.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label6
+            // Size
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label6.ForeColor = Color.DarkOliveGreen;
-            label6.Location = new Point(12, 165);
-            label6.Name = "label6";
-            label6.Size = new Size(53, 20);
-            label6.TabIndex = 12;
-            label6.Text = " Date: ";
-            label6.TextAlign = ContentAlignment.TopCenter;
-            label6.Click += label6_Click;
+            Size.AutoSize = true;
+            Size.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            Size.ForeColor = Color.DarkOliveGreen;
+            Size.Location = new Point(12, 165);
+            Size.Name = "Size";
+            Size.Size = new Size(42, 20);
+            Size.TabIndex = 12;
+            Size.Text = "Soil: ";
+            Size.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label5
+            // fldnm
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label5.ForeColor = Color.DarkOliveGreen;
-            label5.Location = new Point(12, 125);
-            label5.Name = "label5";
-            label5.Size = new Size(46, 20);
-            label5.TabIndex = 11;
-            label5.Text = "Field:";
-            label5.TextAlign = ContentAlignment.TopCenter;
+            fldnm.AutoSize = true;
+            fldnm.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            fldnm.ForeColor = Color.DarkOliveGreen;
+            fldnm.Location = new Point(12, 125);
+            fldnm.Name = "fldnm";
+            fldnm.Size = new Size(91, 20);
+            fldnm.TabIndex = 11;
+            fldnm.Text = "Field Name:";
+            fldnm.TextAlign = ContentAlignment.TopCenter;
             // 
-            // txtCropName
+            // FarmName
             // 
-            txtCropName.AutoSize = true;
-            txtCropName.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            txtCropName.ForeColor = Color.DarkOliveGreen;
-            txtCropName.Location = new Point(7, 84);
-            txtCropName.Name = "txtCropName";
-            txtCropName.Size = new Size(95, 20);
-            txtCropName.TabIndex = 10;
-            txtCropName.Text = " Crop Name:";
-            txtCropName.TextAlign = ContentAlignment.TopCenter;
+            FarmName.AutoSize = true;
+            FarmName.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            FarmName.ForeColor = Color.DarkOliveGreen;
+            FarmName.Location = new Point(12, 84);
+            FarmName.Name = "FarmName";
+            FarmName.Size = new Size(47, 20);
+            FarmName.TabIndex = 10;
+            FarmName.Text = "Farm:";
+            FarmName.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnDelete
             // 
             btnDelete.ForeColor = Color.DarkOliveGreen;
-            btnDelete.Location = new Point(204, 212);
+            btnDelete.Location = new Point(204, 243);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(90, 23);
             btnDelete.TabIndex = 9;
             btnDelete.Text = "DELETE";
             btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
             btnUpdate.ForeColor = Color.DarkOliveGreen;
-            btnUpdate.Location = new Point(108, 212);
+            btnUpdate.Location = new Point(108, 243);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(90, 23);
             btnUpdate.TabIndex = 8;
             btnUpdate.Text = "UPDATE";
             btnUpdate.UseVisualStyleBackColor = true;
-            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnAdd
             // 
             btnAdd.ForeColor = Color.DarkOliveGreen;
-            btnAdd.Location = new Point(12, 212);
+            btnAdd.Location = new Point(3, 243);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(90, 23);
             btnAdd.TabIndex = 7;
             btnAdd.Text = "ADD";
             btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
             // 
             // label3
             // 
@@ -264,7 +279,7 @@
             label3.Size = new Size(0, 25);
             label3.TabIndex = 2;
             // 
-            // CropsForm
+            // FieldsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -273,9 +288,8 @@
             ClientSize = new Size(800, 450);
             Controls.Add(panel3);
             Controls.Add(panelTop);
-            Name = "CropsForm";
-            Text = "CropsForm";
-            Load += CropsForm_Load;
+            Name = "FieldsForm";
+            Text = "FieldsForm";
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logo1).EndInit();
@@ -293,19 +307,21 @@
         private Label label2;
         internal Label label1;
         private Panel panel3;
+        private DataGridView dataGridView1;
         private Panel panel2;
-        internal Label label6;
-        internal Label label5;
-        internal Label txtCropName;
+        private TextBox txtSoil;
+        private TextBox txtFieldName;
+        private Button btnBack;
+        internal Label label7;
+        internal Label Size;
+        internal Label fldnm;
+        internal Label FarmName;
         private Button btnDelete;
         private Button btnUpdate;
         private Button btnAdd;
         private Label label3;
-        private DateTimePicker dtPlantingDate;
-        private ComboBox cmbField;
-        private TextBox txtCropName1;
-        internal Label label7;
-        private DataGridView dataGridView1;
-        private Button btnBack;
+        private ComboBox cmbFarm;
+        private TextBox txtArea;
+        internal Label label4;
     }
 }

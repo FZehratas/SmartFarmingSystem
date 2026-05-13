@@ -11,29 +11,45 @@ namespace SmartFarmingSystem
 {
     public partial class LoginForm : Form
     {
+        string connString = "Host=ep-bold-surf-apre6yz3.c-7.us-east-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=npg_nqxUsDFfP10g;SSL Mode=Require;Trust Server Certificate=true;";
         public LoginForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new Size(1000, 600);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text;
-            string password = txtPassword.Text;
-
-            // ŞİMDİLİK LOCAL TEST
-            if (username == "admin" && password == "123")
+            using (var conn = new NpgsqlConnection(connString))
             {
-                MessageBox.Show("Giriş başarılı!");
+                conn.Open();
 
-                Dashboard d = new Dashboard();
-                d.Show();
+                string query = @"SELECT * FROM Users 
+                         WHERE username=@u AND password=@p";
 
-                this.Hide(); // login form kapanır
-            }
-            else
-            {
-                MessageBox.Show("Hatalı giriş");
+                using (var cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@u", txtUsername.Text);
+                    cmd.Parameters.AddWithValue("@p", txtPassword.Text);
+
+                    var reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        MessageBox.Show("Login başarılı!");
+
+                        Dashboard d = new Dashboard();
+                        d.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hatalı giriş!");
+                    }
+                }
             }
         }
 

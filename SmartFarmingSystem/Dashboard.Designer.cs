@@ -37,9 +37,9 @@
             label3 = new Label();
             panel2 = new Panel();
             buttonlogout = new Button();
-            btnUsers = new Button();
+            btnField = new Button();
             btnSensors = new Button();
-            btnFields = new Button();
+            btnFarms = new Button();
             btnCrops = new Button();
             dataGridViewtbl1 = new DataGridView();
             panel3 = new Panel();
@@ -121,9 +121,9 @@
             // panel2
             // 
             panel2.Controls.Add(buttonlogout);
-            panel2.Controls.Add(btnUsers);
+            panel2.Controls.Add(btnField);
             panel2.Controls.Add(btnSensors);
-            panel2.Controls.Add(btnFields);
+            panel2.Controls.Add(btnFarms);
             panel2.Controls.Add(btnCrops);
             panel2.Controls.Add(label3);
             panel2.Location = new Point(3, 3);
@@ -143,16 +143,16 @@
             buttonlogout.UseVisualStyleBackColor = true;
             buttonlogout.Click += buttonlogout_Click;
             // 
-            // btnUsers
+            // btnField
             // 
-            btnUsers.ForeColor = Color.DarkOliveGreen;
-            btnUsers.Location = new Point(30, 209);
-            btnUsers.Name = "btnUsers";
-            btnUsers.Size = new Size(195, 23);
-            btnUsers.TabIndex = 7;
-            btnUsers.Text = "Manage Users";
-            btnUsers.UseVisualStyleBackColor = true;
-            btnUsers.Click += button4_Click;
+            btnField.ForeColor = Color.DarkOliveGreen;
+            btnField.Location = new Point(30, 209);
+            btnField.Name = "btnField";
+            btnField.Size = new Size(195, 23);
+            btnField.TabIndex = 7;
+            btnField.Text = "Manage Field";
+            btnField.UseVisualStyleBackColor = true;
+            btnField.Click += button4_Click;
             // 
             // btnSensors
             // 
@@ -165,16 +165,16 @@
             btnSensors.UseVisualStyleBackColor = true;
             btnSensors.Click += btnSensors_Click;
             // 
-            // btnFields
+            // btnFarms
             // 
-            btnFields.ForeColor = Color.DarkOliveGreen;
-            btnFields.Location = new Point(30, 113);
-            btnFields.Name = "btnFields";
-            btnFields.Size = new Size(195, 23);
-            btnFields.TabIndex = 5;
-            btnFields.Text = "Manage Fields";
-            btnFields.UseVisualStyleBackColor = true;
-            btnFields.Click += button2_Click;
+            btnFarms.ForeColor = Color.DarkOliveGreen;
+            btnFarms.Location = new Point(30, 113);
+            btnFarms.Name = "btnFarms";
+            btnFarms.Size = new Size(195, 23);
+            btnFarms.TabIndex = 5;
+            btnFarms.Text = "Manage Farms";
+            btnFarms.UseVisualStyleBackColor = true;
+            btnFarms.Click += button2_Click;
             // 
             // btnCrops
             // 
@@ -289,9 +289,9 @@
         private Label label3;
         private Panel panel2;
         private Button btnCrops;
-        private Button btnUsers;
+        private Button btnField;
         private Button btnSensors;
-        private Button btnFields;
+        private Button btnFarms;
         private DataGridView dataGridViewtbl1;
         private Button buttonlogout;
         private Panel panel3;

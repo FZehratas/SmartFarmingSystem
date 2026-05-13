@@ -5,27 +5,31 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Npgsql;
 
 namespace SmartFarmingSystem
 {
     public partial class SensorReadingsForm : Form
     {
+        string connString = "Host=ep-bold-surf-apre6yz3.c-7.us-east-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=npg_nqxUsDFfP10g;SSL Mode=Require;Trust Server Certificate=true;";
 
         void LoadSensors()
         {
-            DataTable dt = new DataTable();
+            using (var conn = new NpgsqlConnection(connString))
+            {
+                conn.Open();
 
-            dt.Columns.Add("ID");
-            dt.Columns.Add("Field");
-            dt.Columns.Add("Temperature");
-            dt.Columns.Add("Moisture");
-            dt.Columns.Add("Date");
+                string query = @"SELECT s.reading_id, f.field_name, s.temperature, s.moisture, s.reading_date
+                         FROM sensorreadings s
+                         JOIN fields f ON s.field_id = f.field_id";
 
-            dt.Rows.Add(1, "Greenhouse A", "22", "70", "2026-05-06");
-            dt.Rows.Add(2, "Greenhouse B", "24", "65", "2026-05-06");
-            dt.Rows.Add(3, "Vertical Tower 1", "21", "75", "2026-05-06");
-
-            dataGridView1.DataSource = dt;
+                using (var da = new NpgsqlDataAdapter(query, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+            }
         }
         void LoadFields()
         {
@@ -44,26 +48,62 @@ namespace SmartFarmingSystem
         {
             InitializeComponent();
             this.Load += SensorReadingsForm_Load;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = new Size(1000, 600);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            DataTable dt = (DataTable)dataGridView1.DataSource;
+            using (var conn = new NpgsqlConnection(connString))
+            {
+                conn.Open();
 
-            dt.Rows.Add(
-                dt.Rows.Count + 1,
-                cmbField.Text,
-                txtTemperature.Text,
-                txtMoisture.Text,
-                dtReadingDate.Value.ToShortDateString()
-            );
+                string query = @"INSERT INTO sensorreadings (field_id, temperature, moisture, reading_date)
+                         VALUES (
+                             (SELECT field_id FROM fields WHERE field_name=@f),
+                             @temp, @moist, @date
+                         )";
+
+                using (var cmd = new NpgsqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@f", cmbField.Text);
+                    cmd.Parameters.AddWithValue("@temp", int.Parse(txtTemperature.Text));
+                    cmd.Parameters.AddWithValue("@moist", int.Parse(txtMoisture.Text));
+                    cmd.Parameters.AddWithValue("@date", dtReadingDate.Value);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            
+
+            LoadSensors();
+            txtTemperature.Clear();
+            txtMoisture.Clear();
+            cmbField.SelectedIndex = -1;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow != null)
             {
-                dataGridView1.Rows.RemoveAt(dataGridView1.CurrentRow.Index);
+                int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["reading_id"].Value);
+
+                using (var conn = new NpgsqlConnection(connString))
+                {
+                    conn.Open();
+
+                    string query = "DELETE FROM sensorreadings WHERE reading_id=@id";
+
+                    using (var cmd = new NpgsqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                LoadSensors();
             }
         }
 
@@ -71,10 +111,30 @@ namespace SmartFarmingSystem
         {
             if (dataGridView1.CurrentRow != null)
             {
-                dataGridView1.CurrentRow.Cells[1].Value = cmbField.Text;
-                dataGridView1.CurrentRow.Cells[2].Value = txtTemperature.Text;
-                dataGridView1.CurrentRow.Cells[3].Value = txtMoisture.Text;
-                dataGridView1.CurrentRow.Cells[4].Value = dtReadingDate.Value.ToShortDateString();
+                int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["reading_id"].Value);
+
+                using (var conn = new NpgsqlConnection(connString))
+                {
+                    conn.Open();
+
+                    string query = @"UPDATE sensorreadings 
+                             SET temperature=@temp,
+                                 moisture=@moist,
+                                 reading_date=@date
+                             WHERE reading_id=@id";
+
+                    using (var cmd = new NpgsqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@temp", int.Parse(txtTemperature.Text));
+                        cmd.Parameters.AddWithValue("@moist", int.Parse(txtMoisture.Text));
+                        cmd.Parameters.AddWithValue("@date", dtReadingDate.Value);
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                LoadSensors();
             }
         }
 
@@ -84,10 +144,9 @@ namespace SmartFarmingSystem
             {
                 var row = dataGridView1.Rows[e.RowIndex];
 
-                cmbField.Text = row.Cells[1].Value.ToString();
-                txtTemperature.Text = row.Cells[2].Value.ToString();
-                txtMoisture.Text = row.Cells[3].Value.ToString();
-                dtReadingDate.Value = Convert.ToDateTime(row.Cells[4].Value);
+                txtTemperature.Text = row.Cells["temperature"].Value.ToString();
+                txtMoisture.Text = row.Cells["moisture"].Value.ToString();
+                dtReadingDate.Value = Convert.ToDateTime(row.Cells["reading_date"].Value);
             }
         }
 
