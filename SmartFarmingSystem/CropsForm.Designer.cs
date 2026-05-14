@@ -62,7 +62,7 @@
             panelTop.Controls.Add(label1);
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(801, 39);
+            panelTop.Size = new Size(975, 39);
             panelTop.TabIndex = 7;
             // 
             // logo1
@@ -80,7 +80,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label2.ForeColor = Color.DarkOliveGreen;
-            label2.Location = new Point(541, 9);
+            label2.Location = new Point(725, 9);
             label2.Name = "label2";
             label2.Size = new Size(247, 25);
             label2.TabIndex = 1;
@@ -104,7 +104,7 @@
             panel3.Controls.Add(panel2);
             panel3.Location = new Point(28, 51);
             panel3.Name = "panel3";
-            panel3.Size = new Size(744, 349);
+            panel3.Size = new Size(944, 349);
             panel3.TabIndex = 8;
             // 
             // dataGridView1
@@ -113,7 +113,7 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(363, 77);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(350, 161);
+            dataGridView1.Size = new Size(552, 161);
             dataGridView1.TabIndex = 4;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
@@ -270,7 +270,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1005, 450);
             Controls.Add(panel3);
             Controls.Add(panelTop);
             Name = "CropsForm";

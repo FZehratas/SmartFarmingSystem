@@ -68,7 +68,14 @@ namespace SmartFarmingSystem
                     cmd.Parameters.AddWithValue("@l", txtLocation.Text);
                     cmd.Parameters.AddWithValue("@s", int.Parse(txtSize.Text));
 
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Bu farm zaten var!");
+                    }
                 }
             }
 
@@ -152,6 +159,11 @@ namespace SmartFarmingSystem
         }
 
         private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

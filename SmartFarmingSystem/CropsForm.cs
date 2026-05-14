@@ -101,14 +101,25 @@ namespace SmartFarmingSystem
             {
                 var row = dataGridView1.Rows[e.RowIndex];
 
-                selectedCropId = Convert.ToInt32(row.Cells[0].Value); // crop_id
+                // ID
+                if (row.Cells[0].Value != DBNull.Value)
+                    selectedCropId = Convert.ToInt32(row.Cells[0].Value);
 
-                txtCropName1.Text = row.Cells[1].Value.ToString();
-                cmbField.Text = row.Cells[2].Value.ToString();
+                // Text alanları
+                txtCropName1.Text = row.Cells[1].Value?.ToString();
+                cmbField.Text = row.Cells[2].Value?.ToString();
 
+                // Date fix (EN KRİTİK KISIM)
                 var v = row.Cells[3].Value;
-                if (v is DateTime dt) dtPlantingDate.Value = dt;
-                else if (v is DateOnly d) dtPlantingDate.Value = d.ToDateTime(TimeOnly.MinValue);
+
+                if (v != DBNull.Value)
+                {
+                    if (v is DateTime dt)
+                        dtPlantingDate.Value = dt;
+
+                    else if (v is DateOnly d)
+                        dtPlantingDate.Value = d.ToDateTime(TimeOnly.MinValue);
+                }
             }
         }
 

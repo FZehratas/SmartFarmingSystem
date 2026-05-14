@@ -32,10 +32,11 @@
             panel1 = new Panel();
             panelTop = new Panel();
             logo1 = new PictureBox();
-            label2 = new Label();
             label1 = new Label();
+            label2 = new Label();
             label3 = new Label();
             panel2 = new Panel();
+            btnStatistics = new Button();
             buttonlogout = new Button();
             btnField = new Button();
             btnSensors = new Button();
@@ -70,7 +71,7 @@
             panelTop.Controls.Add(label1);
             panelTop.Location = new Point(0, 2);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(801, 39);
+            panelTop.Size = new Size(1020, 39);
             panelTop.TabIndex = 6;
             // 
             // logo1
@@ -83,17 +84,6 @@
             logo1.TabIndex = 1;
             logo1.TabStop = false;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label2.ForeColor = Color.DarkOliveGreen;
-            label2.Location = new Point(541, 9);
-            label2.Name = "label2";
-            label2.Size = new Size(247, 25);
-            label2.TabIndex = 1;
-            label2.Text = "Welcome! Have a nice day ";
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -105,6 +95,18 @@
             label1.TabIndex = 0;
             label1.Text = "STRAWBERRY FARMING CORP";
             label1.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label2.ForeColor = Color.DarkOliveGreen;
+            label2.Location = new Point(553, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(247, 25);
+            label2.TabIndex = 1;
+            label2.Text = "Welcome! Have a nice day ";
+            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -120,6 +122,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(btnStatistics);
             panel2.Controls.Add(buttonlogout);
             panel2.Controls.Add(btnField);
             panel2.Controls.Add(btnSensors);
@@ -131,6 +134,16 @@
             panel2.Size = new Size(270, 393);
             panel2.TabIndex = 3;
             panel2.Paint += panel2_Paint;
+            // 
+            // btnStatistics
+            // 
+            btnStatistics.Location = new Point(30, 252);
+            btnStatistics.Name = "btnStatistics";
+            btnStatistics.Size = new Size(195, 23);
+            btnStatistics.TabIndex = 10;
+            btnStatistics.Text = "Statistics";
+            btnStatistics.UseVisualStyleBackColor = true;
+            btnStatistics.Click += btnStatistics_Click;
             // 
             // buttonlogout
             // 
@@ -193,7 +206,7 @@
             dataGridViewtbl1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewtbl1.Location = new Point(296, 116);
             dataGridViewtbl1.Name = "dataGridViewtbl1";
-            dataGridViewtbl1.Size = new Size(417, 148);
+            dataGridViewtbl1.Size = new Size(433, 148);
             dataGridViewtbl1.TabIndex = 4;
             dataGridViewtbl1.CellContentClick += dataGridViewtbl1_CellContentClick;
             // 
@@ -207,7 +220,7 @@
             panel3.Controls.Add(panel2);
             panel3.Location = new Point(30, 69);
             panel3.Name = "panel3";
-            panel3.Size = new Size(744, 349);
+            panel3.Size = new Size(816, 349);
             panel3.TabIndex = 5;
             // 
             // label5
@@ -261,7 +274,7 @@
             AutoValidate = AutoValidate.EnableAllowFocusChange;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(878, 450);
             Controls.Add(panel3);
             Controls.Add(panel1);
             Name = "Dashboard";
@@ -299,5 +312,6 @@
         private Label lblCrops;
         private Label label5;
         private Label label4;
+        private Button btnStatistics;
     }
 }

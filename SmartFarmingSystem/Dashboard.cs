@@ -13,9 +13,9 @@ namespace SmartFarmingSystem
     public partial class Dashboard : Form
     {
         string connString = "Host=ep-bold-surf-apre6yz3.c-7.us-east-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=npg_nqxUsDFfP10g;SSL Mode=Require;Trust Server Certificate=true;";
-       
-        
-        
+
+
+
         public Dashboard()
         {
             InitializeComponent();
@@ -76,14 +76,14 @@ namespace SmartFarmingSystem
         {
             FarmsForm f = new FarmsForm(); // şimdilik bunu aç
             f.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             FieldsForm f = new FieldsForm();
             f.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -107,13 +107,26 @@ namespace SmartFarmingSystem
         {
             CropsForm form = new CropsForm();
             form.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnSensors_Click(object sender, EventArgs e)
         {
             SensorReadingsForm f = new SensorReadingsForm();
             f.Show();
+            this.Close();
+        }
+
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            StatisticsForm s = new StatisticsForm();
+            s.Show();
+            this.Close();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

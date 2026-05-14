@@ -11,6 +11,7 @@ namespace SmartFarmingSystem
 {
     public partial class SensorReadingsForm : Form
     {
+        int selectedReadingId = 0;
         string connString = "Host=ep-bold-surf-apre6yz3.c-7.us-east-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=npg_nqxUsDFfP10g;SSL Mode=Require;Trust Server Certificate=true;";
 
         void LoadSensors()
@@ -33,11 +34,22 @@ namespace SmartFarmingSystem
         }
         void LoadFields()
         {
-            cmbField.Items.Clear();
+            using (var conn = new NpgsqlConnection(connString))
+            {
+                conn.Open();
 
-            cmbField.Items.Add("Greenhouse A");
-            cmbField.Items.Add("Greenhouse B");
-            cmbField.Items.Add("Vertical Tower 1");
+                string q = "SELECT field_id, field_name FROM fields";
+
+                using (var da = new NpgsqlDataAdapter(q, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    cmbField.DataSource = dt;
+                    cmbField.DisplayMember = "field_name"; // görünen
+                    cmbField.ValueMember = "field_id";     // arka plan (ID)
+                }
+            }
         }
         private void SensorReadingsForm_Load(object sender, EventArgs e)
         {
@@ -76,7 +88,7 @@ namespace SmartFarmingSystem
                     cmd.ExecuteNonQuery();
                 }
             }
-            
+
 
             LoadSensors();
             txtTemperature.Clear();
@@ -86,6 +98,7 @@ namespace SmartFarmingSystem
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+
             if (dataGridView1.CurrentRow != null)
             {
                 int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["reading_id"].Value);
@@ -109,44 +122,60 @@ namespace SmartFarmingSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow != null)
+            if (selectedReadingId == 0)
             {
-                int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells["reading_id"].Value);
-
-                using (var conn = new NpgsqlConnection(connString))
-                {
-                    conn.Open();
-
-                    string query = @"UPDATE sensorreadings 
-                             SET temperature=@temp,
-                                 moisture=@moist,
-                                 reading_date=@date
-                             WHERE reading_id=@id";
-
-                    using (var cmd = new NpgsqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@temp", int.Parse(txtTemperature.Text));
-                        cmd.Parameters.AddWithValue("@moist", int.Parse(txtMoisture.Text));
-                        cmd.Parameters.AddWithValue("@date", dtReadingDate.Value);
-                        cmd.Parameters.AddWithValue("@id", id);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-
-                LoadSensors();
+                MessageBox.Show("Lütfen bir kayıt seç!");
+                return;
             }
+
+            if (cmbField.SelectedValue == null)
+            {
+                MessageBox.Show("Field seçili değil!");
+                return;
+            }
+
+            using (var conn = new NpgsqlConnection(connString))
+            {
+                conn.Open();
+
+                string q = @"UPDATE sensorreadings 
+                     SET temperature=@temp,
+                         moisture=@moisture,
+                         field_id=@field_id,
+                         reading_date=@date
+                     WHERE reading_id=@id";
+
+                using (var cmd = new NpgsqlCommand(q, conn))
+                {
+                    cmd.Parameters.AddWithValue("@temp", Convert.ToDouble(txtTemperature.Text));
+                    cmd.Parameters.AddWithValue("@moisture", Convert.ToDouble(txtMoisture.Text));
+                    cmd.Parameters.AddWithValue("@field_id", Convert.ToInt32(cmbField.SelectedValue)); // 💣 FIX
+                    cmd.Parameters.AddWithValue("@date", dtReadingDate.Value);
+                    cmd.Parameters.AddWithValue("@id", selectedReadingId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            LoadSensors();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                var row = dataGridView1.Rows[e.RowIndex];
+                var row = dataGridView1.Rows[e.RowIndex]; // 💣 BURASI ŞART
 
-                txtTemperature.Text = row.Cells["temperature"].Value.ToString();
-                txtMoisture.Text = row.Cells["moisture"].Value.ToString();
-                dtReadingDate.Value = Convert.ToDateTime(row.Cells["reading_date"].Value);
+                if (row.Cells[0].Value != DBNull.Value)
+                    selectedReadingId = Convert.ToInt32(row.Cells[0].Value);
+
+                txtTemperature.Text = row.Cells["temperature"].Value?.ToString();
+                txtMoisture.Text = row.Cells["moisture"].Value?.ToString();
+                cmbField.Text = row.Cells["field_name"].Value?.ToString();
+
+                var v = row.Cells["reading_date"].Value;
+                if (v != DBNull.Value && v != null)
+                    dtReadingDate.Value = Convert.ToDateTime(v);
             }
         }
 
@@ -158,6 +187,11 @@ namespace SmartFarmingSystem
         }
 
         private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

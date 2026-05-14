@@ -62,7 +62,7 @@
             panelTop.Controls.Add(label1);
             panelTop.Location = new Point(3, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(801, 39);
+            panelTop.Size = new Size(885, 39);
             panelTop.TabIndex = 8;
             // 
             // logo1
@@ -80,11 +80,12 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label2.ForeColor = Color.DarkOliveGreen;
-            label2.Location = new Point(541, 9);
+            label2.Location = new Point(635, 5);
             label2.Name = "label2";
             label2.Size = new Size(247, 25);
             label2.TabIndex = 1;
             label2.Text = "Welcome! Have a nice day ";
+            label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -104,7 +105,7 @@
             panel3.Controls.Add(panel2);
             panel3.Location = new Point(12, 57);
             panel3.Name = "panel3";
-            panel3.Size = new Size(744, 349);
+            panel3.Size = new Size(876, 349);
             panel3.TabIndex = 9;
             panel3.Click += btnAdd_Click;
             // 
@@ -114,7 +115,7 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(363, 77);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(350, 161);
+            dataGridView1.Size = new Size(478, 161);
             dataGridView1.TabIndex = 4;
             // 
             // panel2
@@ -262,7 +263,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1043, 450);
             Controls.Add(panel3);
             Controls.Add(panelTop);
             Name = "FarmsForm";

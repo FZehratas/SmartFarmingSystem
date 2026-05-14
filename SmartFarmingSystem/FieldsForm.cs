@@ -18,7 +18,7 @@ namespace SmartFarmingSystem
             InitializeComponent();
             this.Load += FieldsForm_Load;
             this.StartPosition = FormStartPosition.CenterScreen;
-        
+
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             btnAdd.Click += btnAdd_Click;
@@ -183,9 +183,12 @@ namespace SmartFarmingSystem
             this.Hide();
             Dashboard d = new Dashboard();
             d.Show();
-             this.Close();  
+            this.Close();
         }
 
-   
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -64,7 +64,7 @@
             panelTop.Controls.Add(label1);
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(801, 39);
+            panelTop.Size = new Size(920, 39);
             panelTop.TabIndex = 9;
             // 
             // logo1
@@ -82,11 +82,12 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
             label2.ForeColor = Color.DarkOliveGreen;
-            label2.Location = new Point(541, 9);
+            label2.Location = new Point(659, 9);
             label2.Name = "label2";
             label2.Size = new Size(247, 25);
             label2.TabIndex = 1;
             label2.Text = "Welcome! Have a nice day ";
+            label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -106,7 +107,7 @@
             panel3.Controls.Add(panel2);
             panel3.Location = new Point(28, 51);
             panel3.Name = "panel3";
-            panel3.Size = new Size(744, 349);
+            panel3.Size = new Size(892, 349);
             panel3.TabIndex = 10;
             // 
             // dataGridView1
@@ -115,7 +116,7 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(363, 77);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(350, 161);
+            dataGridView1.Size = new Size(515, 161);
             dataGridView1.TabIndex = 4;
             // 
             // panel2
@@ -183,13 +184,12 @@
             // btnBack
             // 
             btnBack.ForeColor = Color.DarkOliveGreen;
-            btnBack.Location = new Point(12, 320);
+            btnBack.Location = new Point(3, 320);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(90, 23);
             btnBack.TabIndex = 17;
             btnBack.Text = "BACK";
             btnBack.UseVisualStyleBackColor = true;
-     
             // 
             // label7
             // 
@@ -285,7 +285,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(959, 450);
             Controls.Add(panel3);
             Controls.Add(panelTop);
             Name = "FieldsForm";
