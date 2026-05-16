@@ -81,12 +81,17 @@ namespace SmartFarmingSystem
         private void btnQ4_Click(object sender, EventArgs e)
         {
             string q = @"
-            SELECT f.field_name, COUNT(*) AS low_moisture_count
-            FROM sensorreadings s
-            JOIN fields f ON s.field_id = f.field_id
-            WHERE s.moisture < 60
+            SELECT f.field_name,
+                   MAX(s.moisture) AS highest_moisture
+            FROM fields f
+            JOIN Sensorreadings s
+                ON f.field_id = s.field_id
             GROUP BY f.field_name
-            HAVING COUNT(*) > 1";
+            ORDER BY highest_moisture DESC
+            LIMIT 1;
+            ";
+
+            LoadData(q);
         }
 
 
