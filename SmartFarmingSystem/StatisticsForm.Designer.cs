@@ -150,7 +150,7 @@
             btnQ6.Name = "btnQ6";
             btnQ6.Size = new Size(193, 23);
             btnQ6.TabIndex = 10;
-            btnQ6.Text = "🔥Max Temperature";
+            btnQ6.Text = "🔥Empty Fields";
             btnQ6.UseVisualStyleBackColor = true;
             btnQ6.Click += btnQ6_Click;
             // 
@@ -160,7 +160,7 @@
             btnQ5.Name = "btnQ5";
             btnQ5.Size = new Size(193, 23);
             btnQ5.TabIndex = 9;
-            btnQ5.Text = "🕒 Recent Crops";
+            btnQ5.Text = "🕒Latest Sensor Data";
             btnQ5.UseVisualStyleBackColor = true;
             btnQ5.Click += btnQ5_Click;
             // 
@@ -170,7 +170,7 @@
             btnQ4.Name = "btnQ4";
             btnQ4.Size = new Size(193, 23);
             btnQ4.TabIndex = 8;
-            btnQ4.Text = "💧Low Moisture Alert";
+            btnQ4.Text = "💧Low Moisture Analysis";
             btnQ4.UseVisualStyleBackColor = true;
             btnQ4.Click += btnQ4_Click;
             // 
@@ -180,7 +180,7 @@
             btnQ3.Name = "btnQ3";
             btnQ3.Size = new Size(193, 23);
             btnQ3.TabIndex = 7;
-            btnQ3.Text = "🌡 Average Temperature";
+            btnQ3.Text = "🌡 Min & Max Temperature";
             btnQ3.UseVisualStyleBackColor = true;
             btnQ3.Click += btnQ3_Click;
             // 
@@ -190,7 +190,7 @@
             btnQ2.Name = "btnQ2";
             btnQ2.Size = new Size(193, 23);
             btnQ2.TabIndex = 6;
-            btnQ2.Text = "📊 Crops Per Field";
+            btnQ2.Text = "📊 Crops Per Farm";
             btnQ2.UseVisualStyleBackColor = true;
             btnQ2.Click += btnQ2_Click;
             // 
@@ -200,7 +200,7 @@
             btnQ1.Name = "btnQ1";
             btnQ1.Size = new Size(193, 23);
             btnQ1.TabIndex = 5;
-            btnQ1.Text = "🌾  Total Crops ";
+            btnQ1.Text = "🌾Above Avg Temperature";
             btnQ1.UseVisualStyleBackColor = true;
             btnQ1.Click += btnQ1_Click;
             // 
