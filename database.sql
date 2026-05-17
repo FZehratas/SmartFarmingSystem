@@ -364,3 +364,21 @@ END;
 $$ LANGUAGE plpgsql;
 
 SELECT monitor_all_fields();
+
+
+9. view: crop monitoring dashboard view.
+	CREATE OR REPLACE VIEW v_crop_monitoring_dashboard AS
+SELECT 
+    f.farm_id,
+    f.farm_name,
+    fi.field_id,
+    fi.field_name,
+    fi.soil_type AS farming_method, 
+    c.crop_id,
+    c.status AS crop_status,
+    c.planting_date
+FROM farms f
+JOIN fields fi ON f.farm_id = fi.farm_id
+JOIN crops c ON fi.field_id = c.field_id;
+
+SELECT * FROM v_crop_monitoring_dashboard;
