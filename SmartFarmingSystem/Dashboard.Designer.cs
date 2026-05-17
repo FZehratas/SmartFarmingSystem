@@ -32,8 +32,8 @@
             panel1 = new Panel();
             panelTop = new Panel();
             logo1 = new PictureBox();
-            label1 = new Label();
             label2 = new Label();
+            label1 = new Label();
             label3 = new Label();
             panel2 = new Panel();
             btnStatistics = new Button();
@@ -48,6 +48,7 @@
             label4 = new Label();
             lblFarms = new Label();
             lblCrops = new Label();
+            btnManageUsers = new Button();
             panel1.SuspendLayout();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo1).BeginInit();
@@ -84,18 +85,6 @@
             logo1.TabIndex = 1;
             logo1.TabStop = false;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            label1.ForeColor = Color.DarkOliveGreen;
-            label1.Location = new Point(75, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(213, 20);
-            label1.TabIndex = 0;
-            label1.Text = "STRAWBERRY FARMING CORP";
-            label1.TextAlign = ContentAlignment.TopCenter;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -107,6 +96,18 @@
             label2.TabIndex = 1;
             label2.Text = "Welcome! Have a nice day ";
             label2.Click += label2_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            label1.ForeColor = Color.DarkOliveGreen;
+            label1.Location = new Point(75, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(213, 20);
+            label1.TabIndex = 0;
+            label1.Text = "STRAWBERRY FARMING CORP";
+            label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // label3
             // 
@@ -122,6 +123,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(btnManageUsers);
             panel2.Controls.Add(btnStatistics);
             panel2.Controls.Add(buttonlogout);
             panel2.Controls.Add(btnField);
@@ -137,7 +139,7 @@
             // 
             // btnStatistics
             // 
-            btnStatistics.Location = new Point(30, 252);
+            btnStatistics.Location = new Point(30, 238);
             btnStatistics.Name = "btnStatistics";
             btnStatistics.Size = new Size(195, 23);
             btnStatistics.TabIndex = 10;
@@ -159,7 +161,7 @@
             // btnField
             // 
             btnField.ForeColor = Color.DarkOliveGreen;
-            btnField.Location = new Point(30, 209);
+            btnField.Location = new Point(30, 200);
             btnField.Name = "btnField";
             btnField.Size = new Size(195, 23);
             btnField.TabIndex = 7;
@@ -170,7 +172,7 @@
             // btnSensors
             // 
             btnSensors.ForeColor = Color.DarkOliveGreen;
-            btnSensors.Location = new Point(30, 161);
+            btnSensors.Location = new Point(30, 155);
             btnSensors.Name = "btnSensors";
             btnSensors.Size = new Size(195, 23);
             btnSensors.TabIndex = 6;
@@ -267,6 +269,16 @@
             lblCrops.TabIndex = 6;
             lblCrops.Text = "0";
             // 
+            // btnManageUsers
+            // 
+            btnManageUsers.Location = new Point(30, 281);
+            btnManageUsers.Name = "btnManageUsers";
+            btnManageUsers.Size = new Size(195, 23);
+            btnManageUsers.TabIndex = 11;
+            btnManageUsers.Text = "Manage Users";
+            btnManageUsers.UseVisualStyleBackColor = true;
+            btnManageUsers.Click += btnManageUsers_Click;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -313,5 +325,6 @@
         private Label label5;
         private Label label4;
         private Button btnStatistics;
+        private Button btnManageUsers;
     }
 }

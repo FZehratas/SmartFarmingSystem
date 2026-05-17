@@ -14,7 +14,13 @@ namespace SmartFarmingSystem
     {
         string connString = "Host=ep-bold-surf-apre6yz3.c-7.us-east-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=npg_nqxUsDFfP10g;SSL Mode=Require;Trust Server Certificate=true;";
 
+        int userRole;
 
+        public Dashboard(int role)
+        {
+            InitializeComponent();
+            userRole = role;
+        }
 
         public Dashboard()
         {
@@ -29,6 +35,10 @@ namespace SmartFarmingSystem
         private void Dashboard_Load(object sender, EventArgs e)
         {
             LoadDashboardData();
+            if (userRole != 1)
+            {
+                btnManageUsers.Visible = false;
+            }
         }
         void LoadDashboardData()
         {
@@ -127,6 +137,13 @@ namespace SmartFarmingSystem
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnManageUsers_Click(object sender, EventArgs e)
+        {
+            ManageUsers frm = new ManageUsers(this);
+            frm.Show();
+            this.Hide();
         }
     }
 }

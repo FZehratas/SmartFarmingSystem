@@ -27,7 +27,7 @@ namespace SmartFarmingSystem
             {
                 conn.Open();
 
-                string query = @"SELECT * FROM Users 
+                string query = @"SELECT role_id FROM Users 
                          WHERE username=@u AND password=@p";
 
                 using (var cmd = new NpgsqlCommand(query, conn))
@@ -35,13 +35,15 @@ namespace SmartFarmingSystem
                     cmd.Parameters.AddWithValue("@u", txtUsername.Text);
                     cmd.Parameters.AddWithValue("@p", txtPassword.Text);
 
-                    var reader = cmd.ExecuteReader();
+                    var result = cmd.ExecuteScalar();
 
-                    if (reader.Read())
+                    if (result != null)
                     {
+                        int roleId = Convert.ToInt32(result);
+
                         MessageBox.Show("Login başarılı!");
 
-                        Dashboard d = new Dashboard();
+                        Dashboard d = new Dashboard(roleId); // 👈 ROLE GÖNDERİYORUZ
                         d.Show();
                         this.Hide();
                     }
@@ -52,6 +54,7 @@ namespace SmartFarmingSystem
                 }
             }
         }
+        
 
         private void lblPassword_Click(object sender, EventArgs e)
         {
